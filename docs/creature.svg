@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="300" rx="20" fill="url(#bg)"/>
+  
+  <circle cx="150" cy="160" r="60" fill="#c9c9c9" stroke="#555" stroke-width="3"/>
+  <circle cx="117.0" cy="169.0" r="13.2" fill="#e0aaff" opacity="0.6"/>
+  <circle cx="183.0" cy="169.0" r="13.2" fill="#e0aaff" opacity="0.6"/>
+  <circle cx="130.8" cy="154.0" r="6.0" fill="#333"/>
+  <circle cx="169.2" cy="154.0" r="6.0" fill="#333"/>
+  <path d="M 136 181.0 Q 150 175.0 164 181.0" stroke="#555" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <text x="150" y="280" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#555">たまご ・ EXP 0</text>
+</svg>

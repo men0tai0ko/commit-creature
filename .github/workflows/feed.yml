@@ -1,0 +1,36 @@
+name: Feed Creature
+
+on:
+  schedule:
+    - cron: "0 15 * * *"  # 毎日 JST 0:00 (UTC 15:00)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Feed the creature
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/feed.py
+
+      - name: Commit updated state
+        run: |
+          git config user.name "commit-creature-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/creature.json docs/creature.svg docs/status.json
+          git diff --cached --quiet || git commit -m "feed: update creature state"
+          git push

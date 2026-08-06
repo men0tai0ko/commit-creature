@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>コミット生物</title>
+<style>
+  :root{
+    --bg: #eef4ff;
+    --card: #ffffff;
+    --ink: #333c4a;
+    --sub: #7a8496;
+    --accent: #6c8cff;
+    --good: #4caf7d;
+    --bad: #e0637a;
+    --border: #e3e8f4;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg: #161a23;
+      --card: #1f2430;
+      --ink: #e8ecf6;
+      --sub: #9aa4bb;
+      --accent: #8fa8ff;
+      --good: #6fd1a0;
+      --bad: #ff8fa0;
+      --border: #2c3242;
+    }
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:32px 16px;
+  }
+  .wrap{ width:100%; max-width:820px; }
+  h1{ font-size:1.6rem; margin:0 0 4px; }
+  .lead{ color:var(--sub); margin:0 0 24px; font-size:0.95rem; }
+  .grid{ display:grid; grid-template-columns: 300px 1fr; gap:20px; }
+  @media (max-width: 640px){ .grid{ grid-template-columns: 1fr; } }
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+  }
+  .creature-card{ text-align:center; }
+  .creature-card img{ width:100%; max-width:260px; }
+  .badge{
+    display:inline-block;
+    padding:4px 12px;
+    border-radius:999px;
+    font-size:0.8rem;
+    font-weight:600;
+    margin-top:8px;
+  }
+  .mood-great{ background:#fff3cf; color:#8a6d00; }
+  .mood-good{ background:#dcf5e6; color:#1f7a4d; }
+  .mood-neutral{ background:#e4ecff; color:#3a53a5; }
+  .mood-hungry{ background:#f5e2ff; color:#7a3aa5; }
+  .mood-sleepy{ background:#e9edf3; color:#5a6577; }
+  .exp-bar-outer{
+    background:var(--border);
+    border-radius:999px;
+    height:10px;
+    margin:14px 0 4px;
+    overflow:hidden;
+  }
+  .exp-bar-inner{
+    background:var(--accent);
+    height:100%;
+    border-radius:999px;
+    transition:width .4s ease;
+  }
+  .exp-label{ font-size:0.78rem; color:var(--sub); }
+  .section-title{ font-size:1rem; font-weight:700; margin:0 0 12px; }
+  .history{ display:flex; align-items:flex-end; gap:4px; height:90px; margin-top:8px; }
+  .history .bar{ flex:1; border-radius:4px 4px 0 0; min-height:3px; position:relative; }
+  .history .bar.pos{ background:var(--good); }
+  .history .bar.neg{ background:var(--bad); }
+  .history .bar:hover::after{
+    content: attr(data-tip);
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--ink);
+    color:var(--card);
+    font-size:0.7rem;
+    padding:3px 6px;
+    border-radius:6px;
+    white-space:nowrap;
+    margin-bottom:4px;
+  }
+  .runs{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .runs li{
+    display:flex; align-items:center; gap:10px;
+    font-size:0.85rem;
+    padding:8px 10px;
+    border:1px solid var(--border);
+    border-radius:10px;
+  }
+  .dot{ width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .dot.success{ background:var(--good); }
+  .dot.failure{ background:var(--bad); }
+  .dot.running{ background:#f0b429; animation:pulse 1.2s infinite; }
+  .dot.unknown{ background:var(--sub); }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+  .runs a{ color:var(--accent); text-decoration:none; margin-left:auto; font-size:0.8rem; }
+  .muted{ color:var(--sub); font-size:0.85rem; }
+  footer{ margin-top:24px; color:var(--sub); font-size:0.78rem; text-align:center; }
+  code{ background:var(--border); padding:1px 5px; border-radius:4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🥚 コミット生物</h1>
+  <p class="lead">このリポジトリの活動(コミット・PR・Issue)をエサに、毎日少しずつ育つ生物です。</p>
+
+  <div class="grid">
+    <div class="card creature-card">
+      <img id="creature-img" src="creature.svg" alt="コミット生物">
+      <div id="mood-badge" class="badge mood-sleepy">読み込み中…</div>
+      <div class="exp-bar-outer"><div id="exp-bar" class="exp-bar-inner" style="width:0%"></div></div>
+      <div id="exp-label" class="exp-label">EXP —</div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card">
+        <div class="section-title">直近30日の活動スコア</div>
+        <div id="history" class="history"></div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Actions 実行状況</div>
+        <ul id="runs" class="runs">
+          <li class="muted">GitHub上で運用を開始すると表示されます(下記 REPO_SLUG を設定してください)。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    最終更新: <span id="last-run">—</span> ・ 毎日1回、活動を集計して更新されます
+  </footer>
+</div>
+
+<script>
+// GitHub上で運用開始したら "owner/repo" 形式で設定してください(例: "tsax0/commit-creature")
+const REPO_SLUG = "";
+
+const MOOD_LABEL = { great: "絶好調", good: "ごきげん", neutral: "ふつう", hungry: "おなかすいた", sleepy: "おやすみ中" };
+
+async function loadStatus() {
+  try {
+    const res = await fetch(`status.json?t=${Date.now()}`, { cache: "no-store" });
+    if (!res.ok) throw new Error("status.json not found");
+    const s = await res.json();
+    renderStatus(s);
+  } catch (e) {
+    document.getElementById("mood-badge").textContent = "まだ実行されていません";
+  }
+  document.getElementById("creature-img").src = `creature.svg?t=${Date.now()}`;
+}
+
+function renderStatus(s) {
+  const badge = document.getElementById("mood-badge");
+  badge.textContent = MOOD_LABEL[s.mood] || s.mood;
+  badge.className = `badge mood-${s.mood}`;
+
+  const span = s.next_stage_exp ? (s.next_stage_exp - s.stage_min_exp) : 1;
+  const progressed = s.next_stage_exp ? (s.exp - s.stage_min_exp) : span;
+  const pct = Math.max(4, Math.min(100, Math.round((progressed / span) * 100)));
+  document.getElementById("exp-bar").style.width = pct + "%";
+  document.getElementById("exp-label").textContent = s.next_stage_exp
+    ? `EXP ${s.exp} / 次の進化まで ${s.next_stage_exp}`
+    : `EXP ${s.exp} (最終形態)`;
+
+  document.getElementById("last-run").textContent = s.last_run ? new Date(s.last_run).toLocaleString("ja-JP") : "—";
+
+  const hist = s.history || [];
+  const wrap = document.getElementById("history");
+  wrap.innerHTML = "";
+  const maxAbs = Math.max(1, ...hist.map(h => Math.abs(h.score)));
+  hist.forEach(h => {
+    const bar = document.createElement("div");
+    bar.className = "bar " + (h.score >= 0 ? "pos" : "neg");
+    const h_px = Math.max(3, Math.round((Math.abs(h.score) / maxAbs) * 80));
+    bar.style.height = h_px + "px";
+    bar.dataset.tip = `${h.date}: ${h.score > 0 ? "+" : ""}${h.score}`;
+    wrap.appendChild(bar);
+  });
+}
+
+async function loadRuns() {
+  const list = document.getElementById("runs");
+  if (!REPO_SLUG) return;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO_SLUG}/actions/runs?per_page=8`);
+    if (!res.ok) throw new Error("failed");
+    const data = await res.json();
+    list.innerHTML = "";
+    (data.workflow_runs || []).forEach(run => {
+      const li = document.createElement("li");
+      const dotClass = run.status !== "completed" ? "running" : (run.conclusion === "success" ? "success" : run.conclusion === "failure" ? "failure" : "unknown");
+      li.innerHTML = `<span class="dot ${dotClass}"></span><span>${run.name || "workflow"}</span><span class="muted">${new Date(run.run_started_at).toLocaleString("ja-JP")}</span><a href="${run.html_url}" target="_blank" rel="noopener">詳細</a>`;
+      list.appendChild(li);
+    });
+    if (!data.workflow_runs || data.workflow_runs.length === 0) {
+      list.innerHTML = '<li class="muted">まだ実行履歴がありません。</li>';
+    }
+  } catch (e) {
+    list.innerHTML = '<li class="muted">実行履歴を取得できませんでした。</li>';
+  }
+}
+
+loadStatus();
+loadRuns();
+setInterval(loadStatus, 60000);
+setInterval(loadRuns, 60000);
+</script>
+</body>
+</html>
