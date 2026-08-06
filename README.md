@@ -4,6 +4,8 @@
 毎日少しずつ育つ生物です。GitHub Actionsが1日1回状態を更新し、GitHub Pagesの
 ダッシュボードで今の姿と実行状況を確認できます。
 
+**<a href="https://men0tai0ko.github.io/commit-creature/" target="_blank" rel="noopener">→ ダッシュボードを開く(別ウィンドウ)</a>**
+
 ## しくみ
 
 - `.github/workflows/feed.yml` … 毎日 JST 0:00 に実行される cron ジョブ(手動実行も可)
