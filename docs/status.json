@@ -1,12 +1,12 @@
 {
-  "last_run": "2026-08-28T23:53:13.934558+00:00",
+  "last_run": "2026-08-29T18:12:30.025931+00:00",
   "score": 2,
   "stage": "たまご",
   "stage_index": 0,
   "stage_min_exp": 0,
   "next_stage_exp": 10,
   "mood": "good",
-  "exp": 3,
+  "exp": 5,
   "history": [
     {
       "date": "2026-08-06",
@@ -196,6 +196,14 @@
       "date": "2026-08-28",
       "score": 2,
       "exp": 3,
+      "commits": 1,
+      "merged_prs": 0,
+      "closed_issues": 0
+    },
+    {
+      "date": "2026-08-29",
+      "score": 2,
+      "exp": 5,
       "commits": 1,
       "merged_prs": 0,
       "closed_issues": 0
