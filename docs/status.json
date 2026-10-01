@@ -1,21 +1,13 @@
 {
-  "last_run": "2026-09-30T19:52:26.481955+00:00",
+  "last_run": "2026-10-01T20:10:44.587639+00:00",
   "score": -1,
   "stage": "幼体",
   "stage_index": 1,
   "stage_min_exp": 10,
   "next_stage_exp": 30,
   "mood": "hungry",
-  "exp": 21,
+  "exp": 20,
   "history": [
-    {
-      "date": "2026-09-01",
-      "score": 2,
-      "exp": 5,
-      "commits": 1,
-      "merged_prs": 0,
-      "closed_issues": 0
-    },
     {
       "date": "2026-09-02",
       "score": -1,
@@ -244,6 +236,14 @@
       "date": "2026-09-30",
       "score": -1,
       "exp": 21,
+      "commits": 0,
+      "merged_prs": 0,
+      "closed_issues": 0
+    },
+    {
+      "date": "2026-10-01",
+      "score": -1,
+      "exp": 20,
       "commits": 0,
       "merged_prs": 0,
       "closed_issues": 0
