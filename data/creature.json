@@ -1,16 +1,8 @@
 {
-  "exp": 26,
+  "exp": 25,
   "stage_index": 1,
   "mood": "hungry",
   "history": [
-    {
-      "date": "2026-09-08",
-      "score": 2,
-      "exp": 10,
-      "commits": 1,
-      "merged_prs": 0,
-      "closed_issues": 0
-    },
     {
       "date": "2026-09-09",
       "score": 2,
@@ -242,8 +234,16 @@
       "commits": 0,
       "merged_prs": 0,
       "closed_issues": 0
+    },
+    {
+      "date": "2026-10-08",
+      "score": -1,
+      "exp": 25,
+      "commits": 0,
+      "merged_prs": 0,
+      "closed_issues": 0
     }
   ],
   "created_at": "2026-08-06T07:20:04.755723+00:00",
-  "last_run": "2026-10-07T20:26:28.342860+00:00"
+  "last_run": "2026-10-08T20:31:56.733516+00:00"
 }
