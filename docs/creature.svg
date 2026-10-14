@@ -6,12 +6,12 @@
     </radialGradient>
   </defs>
   <rect width="300" height="300" rx="20" fill="url(#bg)"/>
-  <circle cx="150" cy="89.8" r="7" fill="#8be0b0" stroke="#555" stroke-width="2"/>
-  <circle cx="150" cy="160" r="78" fill="#8be0b0" stroke="#555" stroke-width="3"/>
-  <circle cx="107.1" cy="171.7" r="17.16" fill="#ff8fa3" opacity="0.6"/>
-  <circle cx="192.9" cy="171.7" r="17.16" fill="#ff8fa3" opacity="0.6"/>
-  <circle cx="125.03999999999999" cy="152.2" r="6.6" fill="#333"/>
-  <circle cx="174.96" cy="152.2" r="6.6" fill="#333"/>
-  <path d="M 134 183.4 Q 150 202.9 166 183.4" stroke="#555" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <text x="150" y="280" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#555">幼体 ・ EXP 29</text>
+  <circle cx="150" cy="73.6" r="8" fill="#8be0b0" stroke="#555" stroke-width="2"/><path d="M 92.4 131.2 L 58.80000000000001 107.19999999999999" stroke="#555" stroke-width="3" stroke-linecap="round"/><path d="M 207.6 131.2 L 241.2 107.19999999999999" stroke="#555" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="150" cy="160" r="96" fill="#8be0b0" stroke="#555" stroke-width="3"/>
+  <circle cx="97.19999999999999" cy="174.4" r="21.12" fill="#ff8fa3" opacity="0.6"/>
+  <circle cx="202.8" cy="174.4" r="21.12" fill="#ff8fa3" opacity="0.6"/>
+  <circle cx="119.28" cy="150.4" r="7.2" fill="#333"/>
+  <circle cx="180.72" cy="150.4" r="7.2" fill="#333"/>
+  <path d="M 134 188.8 Q 150 212.8 166 188.8" stroke="#555" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <text x="150" y="280" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#555">成体 ・ EXP 31</text>
 </svg>
