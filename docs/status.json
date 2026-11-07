@@ -1,21 +1,13 @@
 {
-  "last_run": "2026-11-06T20:42:35.406516+00:00",
+  "last_run": "2026-11-07T19:15:59.390364+00:00",
   "score": 2,
   "stage": "成体",
   "stage_index": 2,
   "stage_min_exp": 30,
   "next_stage_exp": 70,
   "mood": "good",
-  "exp": 47,
+  "exp": 49,
   "history": [
-    {
-      "date": "2026-10-08",
-      "score": -1,
-      "exp": 25,
-      "commits": 0,
-      "merged_prs": 0,
-      "closed_issues": 0
-    },
     {
       "date": "2026-10-09",
       "score": 2,
@@ -244,6 +236,14 @@
       "date": "2026-11-06",
       "score": 2,
       "exp": 47,
+      "commits": 1,
+      "merged_prs": 0,
+      "closed_issues": 0
+    },
+    {
+      "date": "2026-11-07",
+      "score": 2,
+      "exp": 49,
       "commits": 1,
       "merged_prs": 0,
       "closed_issues": 0
